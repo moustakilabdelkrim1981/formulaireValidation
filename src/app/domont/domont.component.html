@@ -21,7 +21,27 @@
         <div *ngIf="firstName.errors.pattern"> erreur de l alphabet</div>
         </div>
     </div>
+    <div class="form-group">
+        <label for="methodContact">contact</label>
+        <select multiple class="form-control" ngModel name="methodContact" id="methodContact">
+         <option value=""></option>
+         <option  *ngFor="let contact of contacts" [ngValue]="contact">{{ contact.name }}</option>
+        </select>
+    </div>
+    <div *ngFor="let contact of contacts" class="radio"><label for="contact1">
+        <input  ngModel type="radio" name="contact1"
+         [value]="contact.id">{{ contact.name }}
+    </label>
+    </div>
+    <div class="checkbox">
+        <label>
+            <input  type="checkbox" ngModel name="subscribe">s'abonner
+        </label>
+    </div>
     <button class="btn btn-primary" [disabled]="!f.valid">valider
     
     </button>
 </form>
+<div>
+    {{f.value | json}}
+</div>
