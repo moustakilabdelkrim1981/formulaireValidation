@@ -1,9 +1,9 @@
 
- <form action="">
+ <form #f="ngForm" (ngSubmit)="submit(f)">
     <div class="form-group">
         <label for="lastname"></label>
         <input required minlength ="5" pattern="[a-zA-Z]+" class="form-control" 
-         ngModel name="lastname" #lastName="ngModel" (change)="log(lastName)" type="text">
+         ngModel name="lastname" #lastName="ngModel"  type="text">
          <div class=" alert alert-danger" *ngIf="lastName.touched && !lastName.valid">    
             <div *ngIf="lastName.errors.required">ce champs est obligatoire !!!</div>
             <div *ngIf="lastName.errors.minlength"> ce champs doit compter au moins{{lastName.errors.minlength.actualLength}}/ {{lastName.errors.minlength.requiredLength}} chars</div>
@@ -12,7 +12,8 @@
     </div>
     <div class="form-group">
         <label for="firstname"></label>
-        <input  required required minlength ="6" pattern="[a-zA-Z]+" ngModel name="firstname" #firstName="ngModel" (change)="log(firstName)"
+        <input  required required minlength ="6" pattern="[a-zA-Z]+" ngModel name="firstname" 
+        #firstName="ngModel" 
          class="form-control" type="text">
         <div class=" alert alert-danger" *ngIf="firstName.touched && !firstName.valid">
         <div *ngIf="firstName.errors.required">ce champs est obligatoire </div>
@@ -20,7 +21,7 @@
         <div *ngIf="firstName.errors.pattern"> erreur de l alphabet</div>
         </div>
     </div>
-    <button class="btn btn-primary">valider
+    <button class="btn btn-primary" [disabled]="!f.valid">valider
     
     </button>
 </form>
